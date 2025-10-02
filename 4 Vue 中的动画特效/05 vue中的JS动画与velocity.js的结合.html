@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>vue中的Js动画与velocity.js的结合</title>
+		<script src="./vue.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<!-- Js的动画  Js的钩子 -->
+			<!-- 这里是用入场动画举例，出场动画同理 
+				before-leave
+				leave
+				after-leave
+			-->
+			<transition name="fade"
+						v-on:before-enter="beforeEnter"
+						v-on:enter="enter"
+						v-on:after-enter="afterEnter">
+				<div v-show="show">hello world</div>
+			</transition>
+			<button v-on:click="BtnClick">切换</button>
+		</div>
+		<script>
+			var vm = new Vue({
+				el:"#root",
+				data:{
+					show:true
+				},
+				methods:{
+					BtnClick:function(){
+						this.show = !(this.show)
+					},
+					beforeEnter:function(el){
+						el.style.color="red"
+					},
+					enter:function(el,done){
+						setTimeout(() => {				//2s的时候变成绿色
+							el.style.color="green"
+							// done()
+						} , 2000)
+						
+						setTimeout(() => {				//4s的时候绿色结束
+							done()
+						} , 4000)
+						
+					},
+					afterEnter:function(el){
+						el.style.color="#000"
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

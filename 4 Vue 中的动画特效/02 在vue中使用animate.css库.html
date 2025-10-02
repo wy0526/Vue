@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="./vue.js"></script>
+		<style>
+			@keyframes bounce-in{
+				0% {
+					transform: scale(0);
+				}
+				50% {
+					transform: scale(1.5);
+				}
+				100% {
+					transform: scale(1);
+				}
+			}
+			
+			.enter{
+				transform-origin: left center;
+				animation: bounce-in 1s;
+			}
+			.leave{
+				transform-origin: left center;
+				animation: bounce-in 1s reverse;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<div id="root">
+			<transition enter-active-class="enter"
+						leave-active-class="leave">
+				<div v-if="show">hello world</div> <!-- 用v-show控制显示隐藏、动态组件也有过渡效果 -->
+			</transition>
+			
+			<button v-on:click="BtnClick">切换</button>
+		</div>
+		<script>
+			var vm = new Vue({
+				el:"#root",
+				data:{
+					show:true
+				},
+				methods:{
+					BtnClick:function(){
+						this.show = !this.show
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

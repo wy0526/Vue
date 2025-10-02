@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>slot</title>
+		<script src="./vue.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<!-- 父组件向子组件传递标签时，只能在子组件外嵌套一个div来占位显示 -->
+			<child content="<p>W</p>"></child>
+		</div>
+		<script>
+		Vue.component("child",{
+			props:['content'],
+			template:`<div>
+						<p>Eidolon</p>
+						<div v-html = "this.content">{{content}}</div>
+					  </div>`
+		})
+		var vm = new Vue({
+			el:"#root"
+		})
+		</script>
+	</body>
+</html>

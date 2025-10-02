@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>使用组件的细节点</title>
+		<script src="./vue.js"></script>
+	</head>
+	<body>
+		<!--
+			1、is 属性
+				<tbody>里接标签<tr>,否则渲染在界面上以后就在table外
+				<ul><ol><select>同理
+				
+			2、子组件里data只能是函数，不能是对象
+			   为了让子组件里的内容独立存储
+		 -->
+			
+		</ul>
+		<div id="root">
+			<table>
+				<tbody>
+					<tr is="row"></tr>
+					<tr is="row"></tr>
+					<tr is="row"></tr>
+				</tbody>
+			</table>
+		</div>
+		<script>
+			Vue.component("row",{
+				data:function(){
+					return {
+						content:"1"
+					}
+				},
+				template:"<tr><td> {{content}} </td></tr>"
+			})
+		
+			var vm = new Vue({
+				el:"#root"
+			})
+		</script>
+	</body>
+</html>

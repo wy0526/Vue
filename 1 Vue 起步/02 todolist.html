@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ToDoList</title>
+		<script src="./vue.js"></script>
+	</head>
+	<body>
+		
+		<!--
+			MVVM   面向数据操作
+			M:Model 模型层     
+			V:View 视图层
+			VM:ViewModel(vue本身)
+		-->
+
+		<div id="root">
+			<input  type="text" v-model="inputValue"/>
+			<button v-on:click="handleBtnClick">提交</button>
+			<ul>
+				<li v-for="item in list">{{item}}</li>
+			</ul>
+		</div>
+		<script>
+			var app = new Vue({
+				el:"#root",
+				data:{
+					list:["第一课的内容","第二课的内容","第三课的内容"],
+					inputValue:""
+				},
+				methods:{
+					handleBtnClick:function(){
+						this.list.push(this.inputValue)
+						this.inputValue = ""
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

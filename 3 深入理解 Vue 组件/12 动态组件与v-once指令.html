@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="./vue.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<!-- 动态组件 -->
+			<component :is="type"></component>
+			<!-- <child-one v-if='type === "child-one"'></child-one>
+			<child-two v-if='type === "child-two"'></child-two> -->
+			<button v-on:click="BtnClick">change</button>
+		</div>
+		<script>
+			//v-once可以不用销毁，而是放在内存里，提高性能和效率
+			Vue.component('child-one',{
+				template:'<div v-once>child-one</div>'
+			})
+			Vue.component('child-two',{
+				template:'<div v-once>child-two</div>'
+			})
+			var vm = new Vue({
+				el:"#root",
+				data:{
+					type:'child-one'
+				},
+				methods:{
+					BtnClick:function(){
+						this.type = (this.type === 'child-one' ? 'child-two' : 'child-one');
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ToDoList_Jquery</title>
+		<script src="./jquery-3.6.0.min.js"></script>
+	</head>
+	<body>
+		<!--   
+			MVP  面向dom操作
+			M:Model模型层 ajax   
+			V:View视图层    
+			P:Presenter控制器
+		-->
+		
+		<div>
+			<input id="input" type="text" />
+			<button id="btn">提交</button>
+			<ul id="list">
+				
+			</ul>
+		</div>
+		
+		<script>
+			function Page(){
+				
+			}
+			
+			$.extend(Page.prototype,{
+				init:function(){
+					this.bindEvents()
+				},
+				bindEvents:function(){
+					var btn = $("#btn");
+					btn.on("click",$.proxy(this.handleBtnclick,this))
+				},
+				handleBtnclick:function(){
+					var inputElem = $("#input");
+					var inputvalue = inputElem.val();
+					var ulElem = $("#list");
+					ulElem.append("<li>"+inputvalue+"</li>")
+					$("#input").val("");
+				}
+			}
+			)
+			
+			var page = new Page()
+			page.init()
+		</script>
+		
+		
+	</body>
+</html>

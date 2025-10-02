@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue 的列表渲染</title>
+		<script src="./vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<!-- <div v-for="(item,index) in list" 
+				 :key="item.id">
+				{{item.text}} ---- {{item.id}}
+			</div> -->
+			
+			<!-- template 是个占位符 无需使用div-->
+			<template v-for="item in list">
+				<div>{{item.id}} ---- {{item.text}}</div>
+				<span>{{item.text}}</span>
+			</template>
+			
+		</div>
+		<script>
+		//能让数据、页面同时变化
+		//方法一：使用下列变异方法
+		//push  pop  shift  unshift  splice  sort  reverse
+		//方法二：直接改变list数组的引用
+		
+			var vm = new Vue({
+				el:"#app",
+				data:{
+					list:[
+						{
+						id:"202201",
+						text:"I"
+						},
+						{
+							id:"202202",
+							text:"can"
+						},
+						{
+							id:"202203",
+							text:"do"
+						},
+						{
+							id:"202204",
+							text:"it"
+						}
+					]
+					
+				}
+			})
+		</script>
+	</body>
+</html>

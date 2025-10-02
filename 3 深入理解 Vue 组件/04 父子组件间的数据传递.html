@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>子组件向父组件传递数据</title>
+		<script src="./vue.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<counter v-bind:count = "1" v-on:inc="handleIncrease"></counter>
+			<counter v-bind:count = "2" v-on:inc="handleIncrease"></counter>
+			<div>{{total}}</div>
+		</div>
+		<script>
+		//子组件通过 事件触发 向父组件传值
+			var counter = {
+				props:["count"],
+				data:function(){
+					return {
+						number:this.count
+					}
+				},
+				template:"<div v-on:click = 'handleBtnClick'>{{number}}</div>",
+				methods:{
+					handleBtnClick:function(){
+						this.number = this.number + 2;
+						this.$emit('inc',2)
+					}
+				}				
+			}
+			var vm = new Vue({
+				el:"#root",
+				data:{
+					total:3   //不能写成 total:"3"
+				},
+				components:{
+					counter:counter
+				},
+				methods:{
+					handleIncrease:function(step){
+						//alert(step) 不能写成 alert("step")
+						this.total += 2
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

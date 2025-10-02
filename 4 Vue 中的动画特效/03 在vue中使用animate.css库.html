@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="./vue.js"></script>
+		<link
+		    rel="stylesheet"
+		    href="./animate.css"
+		/>
+		
+	</head>
+	<body>
+		<div id="root">
+			<transition enter-active-class="animated swing"
+						leave-active-class="animated shake">
+				<div v-if="show">hello world</div> <!-- 用v-show控制显示隐藏、动态组件也有过渡效果 -->
+			</transition>
+			
+			<button v-on:click="BtnClick">切换</button>
+		</div>
+		<script>
+			var vm = new Vue({
+				el:"#root",
+				data:{
+					show:true
+				},
+				methods:{
+					BtnClick:function(){
+						this.show = !this.show
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

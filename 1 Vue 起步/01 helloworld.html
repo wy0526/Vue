@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Hello World</title>
+		<script src="./vue.js"></script>
+	</head>
+	<body>
+		<div id="app01"></div>
+		<div id="app02">{{content02}}</div>
+		<div id="app03">{{content03}}</div>
+		
+		<script>
+			var dom = document.getElementById("app01");
+			dom.innerHTML = "hello world!";
+		</script>
+		
+		<script>
+			var app02 = new Vue({
+				el:"#app02",
+				data:{
+					content02:"hello world!"
+				}
+			})
+		</script>
+		<script>
+			var app03 = new Vue({
+				el:"#app03",
+				data:{
+					content03:"hello world!"
+				}
+			})
+			
+			setTimeout(function(){
+				app.$data.content = "bye world"
+			},2000)	
+			
+		</script>
+	</body>
+</html>

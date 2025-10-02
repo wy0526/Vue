@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>vue中多个元素或组件的过渡</title>
+		<script src="./vue.js"></script>
+		<style>
+		.fade-enter,.fade-leave-to {    /* transition自动添加的类 */
+			opacity: 0;
+		}
+		.fade-enter-active, .fade-leave-active {
+			transition: opacity 1s;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="root">
+			<transition name="fade" mode="in-out">  <!-- 先显示再隐藏 -->
+				<div v-if="show" key="hello">hello world</div>
+				<div v-else="show" key="bye">bye world</div>
+			</transition>
+			<button v-on:click="BtnClick">切换</button>
+		</div>
+		<script>
+			var vm = new Vue({
+				el:"#root",
+				data:{
+					show:true
+				},
+				methods:{
+					BtnClick:function(){
+						this.show = !(this.show)
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

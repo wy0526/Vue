@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="./vue.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<!-- 加上 .native 表明是原生事件，不需要$emit来触发 -->
+			<child @click.native="ClickBtn"></child> 
+		</div>
+		<script>
+			Vue.component("child",{
+				template:"<div >child</div>"
+			})
+			var vm = new Vue({
+				el:"#root",
+				methods:{
+					ClickBtn:function(){
+						alert("click");
+						console.log("click")
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
